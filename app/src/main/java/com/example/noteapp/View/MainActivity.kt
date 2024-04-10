@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         btnAdd = findViewById(R.id.buttonAdd)
         btnDelete = findViewById(R.id.buttonDelete)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        val noteAdapter = NoteAdapter(this@MainActivity)
+        val noteAdapter = NoteAdapter()
         recyclerView.adapter = noteAdapter
         val itemTouchHelper = ItemTouchHelper(simpleItemTouchCallback)
         itemTouchHelper.attachToRecyclerView(recyclerView)
@@ -64,16 +64,13 @@ class MainActivity : AppCompatActivity() {
             viewHolder: RecyclerView.ViewHolder,
             target: RecyclerView.ViewHolder
         ): Boolean {
-            Toast.makeText(this@MainActivity, "on Move", Toast.LENGTH_SHORT).show()
             return false
         }
 
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
-            Toast.makeText(this@MainActivity, "on Swiped ", Toast.LENGTH_SHORT).show()
             val position = viewHolder.adapterPosition
             noteViewModel.delete(notes[position])
         }
 
-        override fun on
     }
 }
